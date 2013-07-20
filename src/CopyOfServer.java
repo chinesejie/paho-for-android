@@ -42,7 +42,7 @@ public class CopyOfServer extends JFrame {
 
 		Container container = this.getContentPane();
 		panel = new JPanel();
-		button = new JButton("发布话题");
+		button = new JButton("publish the topic");
 		button.addActionListener(new ActionListener() {
 
 			@Override

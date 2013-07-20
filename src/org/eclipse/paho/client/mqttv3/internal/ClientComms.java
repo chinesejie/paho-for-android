@@ -580,8 +580,9 @@ public class ClientComms {
 			}
 		}
 	}
+	//notify the queueLock
 	public synchronized void nnnn() {
 		clientState.notifyQueueLock();
-		ClientState.isMyCon=true;
+		ClientState.isMyControll=true;
 	}
 }

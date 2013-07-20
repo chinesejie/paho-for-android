@@ -59,16 +59,12 @@ public class MqttOutputStream extends OutputStream {
 //		out.write(message.getHeader());
 //		out.write(message.getPayload());
 		
-		System.out.println("这是大小开-----------------------");
-		System.out.println(new Date());
-		System.out.println(bytes.length);
-		System.out.println("这是：-----------------------"+new String(bytes));
-		System.out.println(pl.length);
-		System.out.println("这是：-----------------------"+new String(pl));
-		System.out.println("这是大小关-----------------------");
-		
+		System.out.println(new Date()+" sending data...............");
+		System.out.println("header length:"+bytes.length);
+		System.out.println("Payload length:"+pl.length);
 		out.write(bytes,0,bytes.length);
 		out.write(pl,0,pl.length);
+		System.out.println(new Date()+" sending data finish...............");
 	}
 }
 

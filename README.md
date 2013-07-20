@@ -10,4 +10,10 @@ I have tested it, and it seems no problem. Welcomes to report the bug for me at 
 
 If you take my code for your project, remember to build the AlarmManager to start the method of nnnn().
 
+
+Another way...
+By using foreground service, this kind of service in android will not be killed.  the most important, it will still run while android phone sleep.
+
+Tn run the project, firstly build a MQTT server, change the ip on PublishServer.java.     
+
 ---

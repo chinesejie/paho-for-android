@@ -97,7 +97,6 @@ public class CommsSender implements Runnable {
 					if (message instanceof MqttAck) {
 						out.write(message);
 						out.flush();
-						System.out.println("这是回应"); // 用来回应那些qos>0的情况
 					} else {
 						MqttToken token = tokenStore.getToken(message);
 						// While quiescing the tokenstore can be cleared so need

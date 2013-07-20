@@ -19,7 +19,7 @@ import org.eclipse.paho.client.mqttv3.MqttToken;
 import org.eclipse.paho.client.mqttv3.MqttTopic;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
-public class Server extends JFrame {
+public class PublishServer extends JFrame {
 	private static final long serialVersionUID = 1L;
 	//private JPanel panel;
 	private JButton button;
@@ -36,7 +36,7 @@ public class Server extends JFrame {
 	private String myTopic2 = "test/w";
 private JTextField jtopic ;
 private JTextField jmessage ;
-	public Server() {
+	public PublishServer() {
 		this.setTitle("server"+"==="+myTopic);
 		try {
 			client = new MqttClient(host, "Server", new MemoryPersistence());
@@ -47,7 +47,7 @@ private JTextField jmessage ;
 
 		Container container = this.getContentPane();
 		//panel = new JPanel();
-		button = new JButton("发布话题");
+		button = new JButton("click me to send a heartbeat.. see the console print log..");
 		button.addActionListener(new ActionListener() {
 
 			@Override
@@ -77,8 +77,8 @@ private JTextField jmessage ;
 		
 		 jmessage = new JTextField(50);
 		container.add(button);
-		container.add(jtopic);
-		container.add(jmessage);
+		/*container.add(jtopic);
+		container.add(jmessage);*/
 		
 
 	}
@@ -131,7 +131,7 @@ private JTextField jmessage ;
 	}
 
 	public static void main(String[] args) {
-		Server s = new Server();
+		PublishServer s = new PublishServer();
 		s.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		s.setSize(600, 370);
 		s.setLocationRelativeTo(null);

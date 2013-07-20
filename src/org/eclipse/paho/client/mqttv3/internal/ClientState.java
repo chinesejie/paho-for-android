@@ -514,13 +514,13 @@ public class ClientState {
 	 */
 	private void checkForActivity() throws MqttException {
 		final String methodName = "checkForActivity";
-		if(this.isMyCon) {
+		if(this.isMyControll && connected && this.keepAlive > 0) { //
 			pingOutstanding = true;
 			lastPing =  System.currentTimeMillis();;
 			MqttToken token = new MqttToken(clientComms.getClient().getClientId());
 			tokenStore.saveToken(token, pingCommand);
 			pendingFlows.insertElementAt(pingCommand, 0);
-			this.isMyCon=false;
+			this.isMyControll=false;
 			return;
 		}
 		if (connected && this.keepAlive > 0) {
@@ -562,9 +562,8 @@ public class ClientState {
 	 *  - {@link #disconnected(MqttException, boolean)} is called
 	 * @return the next message to send, or null if the client is disconnected
 	 */
-	public static boolean isMyCon = false;
+	public static boolean isMyControll = false;
 	protected MqttWireMessage get() throws MqttException {
-		System.out.println("、、、、、、、、、、、、、、、、、、、、、、、、、、、、");
 		final String methodName = "get";
 		MqttWireMessage result = null;
 
@@ -586,7 +585,6 @@ public class ClientState {
 					return new MqttPingReq();
 				}*/
 					
-				System.out.println("下来了1");
 				// Handle the case where not connected. This should only be the case if: 
 				// - in the process of disconnecting / shutting down
 				// - in the process of connecting
@@ -597,17 +595,14 @@ public class ClientState {
 
 					return null;
 				}
-				System.out.println("下来了2");
 				// Check if there is a need to send a ping to keep the session alive. 
 				// Note this check is done before processing messages. If not done first
 				// an app that only publishes QoS 0 messages will prevent keepalive processing
 				// from functioning.
 				checkForActivity();
 				
-				System.out.println("下来了3");
 				// Now process any queued flows or messages
 				if (!pendingFlows.isEmpty()) {
-					System.out.println("进来了1");
 					// Process the first "flow" in the queue
 					result = (MqttWireMessage)pendingFlows.elementAt(0);
 					pendingFlows.removeElementAt(0);
@@ -620,7 +615,6 @@ public class ClientState {
 		
 					checkQuiesceLock();
 				} else if (!pendingMessages.isEmpty()) {
-					System.out.println("进来了2");
 					// If the inflight window is full then messages are not 
 					// processed until the inflight window has space. 
 					if (actualInFlight < this.maxInflight) {
@@ -639,7 +633,6 @@ public class ClientState {
 				}			
 			}
 		}
-		System.out.println("/////////////////.......");
 		return result;
 	}
 	
@@ -659,7 +652,7 @@ public class ClientState {
 	 */
 	long getTimeUntilPing() {
 		long pingin = getKeepAlive();
-		System.out.println(pingin+"================");
+		 
 		// If KA is zero which means just wait for work or 
 		// if a ping is outstanding return the KA value
 		if (connected && (getKeepAlive() > 0) && !pingOutstanding) {

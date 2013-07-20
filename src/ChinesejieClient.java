@@ -43,7 +43,7 @@ this.setTitle("chinesejie"+"==="+myTopic);
 
 		Container container = this.getContentPane();
 		panel = new JPanel();
-		button = new JButton("订阅话题");
+		button = new JButton("subscribe the topic");
 		button.addActionListener(new ActionListener() {
 
 			@Override
@@ -108,7 +108,7 @@ this.setTitle("chinesejie"+"==="+myTopic);
 			message.setQos(1);
 			message.setRetained(false);
 			System.out.println(message.isRetained() + "------ratained状态");
-			message.setPayload("我来了柔柔弱弱33".getBytes("UTF-8"));*/
+			message.setPayload(" 33".getBytes("UTF-8"));*/
 
 			client.connect(options);
 		

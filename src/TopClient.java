@@ -42,7 +42,7 @@ public class TopClient extends JFrame {
 
 		Container container = this.getContentPane();
 		panel = new JPanel();
-		button = new JButton("¶©ÔÄ»°Ìâ");
+		button = new JButton("subscribe the topic");
 		button.addActionListener(new ActionListener() {
 
 			@Override
