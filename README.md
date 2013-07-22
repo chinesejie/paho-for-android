@@ -12,7 +12,7 @@ If you take my code for your project, remember to build the AlarmManager to star
 
 
 Another way...
-By using foreground service, this kind of service in android will not be killed.  the most important, it will still run while android phone sleep.
+By using foreground service, this kind of service in android will not be killed.  the most important, it will still run while android phone sleep(I am not sure).
 
 Tn run the project, firstly build a MQTT server, change the ip on PublishServer.java.     
 
